@@ -8,9 +8,8 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    base: "drug-sound-alike-helper",
-
   },
+  base: "drug-sound-alike-helper",
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
