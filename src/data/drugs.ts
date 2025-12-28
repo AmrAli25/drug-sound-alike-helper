@@ -9,6 +9,9 @@ export interface Drug {
   commonDosage: string;
   warnings: string[];
   lookAlikeIds: string[];
+  isHighAlert?: boolean;
+  antidote?: string;
+  wrongDrugAction?: string;
 }
 
 export const drugs: Drug[] = [
@@ -24,6 +27,7 @@ export const drugs: Drug[] = [
     commonDosage: "100-200mg twice daily",
     warnings: ["Cardiovascular risk", "GI bleeding risk", "Avoid in sulfa allergy"],
     lookAlikeIds: ["celexa", "cerebyx"],
+    wrongDrugAction: "Monitor for GI bleeding, cardiovascular events. Administer PPI if GI upset occurs. Supportive care and hydration.",
   },
   {
     id: "celexa",
@@ -36,6 +40,9 @@ export const drugs: Drug[] = [
     commonDosage: "20-40mg once daily",
     warnings: ["QT prolongation", "Serotonin syndrome risk", "Suicidal thoughts warning"],
     lookAlikeIds: ["celebrex", "zyprexa"],
+    isHighAlert: true,
+    antidote: "Cyproheptadine for serotonin syndrome (4-8mg initially, then 2mg q2h). Benzodiazepines for agitation.",
+    wrongDrugAction: "Monitor ECG for QT prolongation. Watch for serotonin syndrome signs. Activated charcoal within 1 hour if large dose.",
   },
   {
     id: "cerebyx",
@@ -48,6 +55,9 @@ export const drugs: Drug[] = [
     commonDosage: "10-20mg PE/kg IV",
     warnings: ["Cardiovascular depression", "Purple glove syndrome", "Hypotension"],
     lookAlikeIds: ["celebrex"],
+    isHighAlert: true,
+    antidote: "No specific antidote. Supportive care with IV fluids for hypotension. Consider hemodialysis for severe toxicity.",
+    wrongDrugAction: "Stop infusion immediately. Monitor BP, HR, ECG continuously. Treat hypotension with fluids/vasopressors.",
   },
 
   // Zantac vs Zyrtec vs Xanax
@@ -62,6 +72,7 @@ export const drugs: Drug[] = [
     commonDosage: "150mg twice daily",
     warnings: ["Discontinued in many markets", "NDMA contamination concerns"],
     lookAlikeIds: ["zyrtec", "xanax", "zocor"],
+    wrongDrugAction: "Generally safe single dose. Monitor for CNS effects (confusion, headache). Supportive care.",
   },
   {
     id: "zyrtec",
@@ -74,6 +85,7 @@ export const drugs: Drug[] = [
     commonDosage: "10mg once daily",
     warnings: ["May cause drowsiness", "Caution in renal impairment"],
     lookAlikeIds: ["zantac", "xanax", "zyprexa"],
+    wrongDrugAction: "Monitor for excessive drowsiness. Single dose usually well-tolerated. Supportive care if symptomatic.",
   },
   {
     id: "xanax",
@@ -86,6 +98,9 @@ export const drugs: Drug[] = [
     commonDosage: "0.25-0.5mg three times daily",
     warnings: ["High addiction potential", "CNS depression", "Withdrawal symptoms"],
     lookAlikeIds: ["zantac", "zyrtec"],
+    isHighAlert: true,
+    antidote: "Flumazenil 0.2mg IV over 15 sec, repeat 0.2mg q60sec to max 1mg. CAUTION: May precipitate seizures in chronic users.",
+    wrongDrugAction: "Monitor respiratory status closely. Keep patient supine with airway protection. Avoid Flumazenil in chronic benzo users.",
   },
 
   // Lamictal vs Lamisil vs Lamictal
@@ -100,6 +115,9 @@ export const drugs: Drug[] = [
     commonDosage: "100-200mg twice daily",
     warnings: ["Stevens-Johnson syndrome risk", "Slow titration required", "Rash monitoring"],
     lookAlikeIds: ["lamisil", "lomotil"],
+    isHighAlert: true,
+    antidote: "No specific antidote. Activated charcoal if recent ingestion. Hemodialysis may help in severe cases.",
+    wrongDrugAction: "Monitor for rash (SJS risk), dizziness, ataxia. Stop immediately if rash develops. Supportive care.",
   },
   {
     id: "lamisil",
@@ -112,6 +130,7 @@ export const drugs: Drug[] = [
     commonDosage: "250mg once daily for nail fungus",
     warnings: ["Liver toxicity risk", "Taste disturbance", "Monitor LFTs"],
     lookAlikeIds: ["lamictal", "lomotil"],
+    wrongDrugAction: "Monitor LFTs. Single dose usually safe. Watch for taste disturbance, GI upset. Supportive care.",
   },
   {
     id: "lomotil",
@@ -124,6 +143,9 @@ export const drugs: Drug[] = [
     commonDosage: "5mg four times daily",
     warnings: ["Opioid-like effects", "Anticholinergic effects", "Not for infectious diarrhea"],
     lookAlikeIds: ["lamictal", "lamisil"],
+    isHighAlert: true,
+    antidote: "Naloxone for opioid effects (0.4-2mg IV, may repeat). Physostigmine for severe anticholinergic toxicity.",
+    wrongDrugAction: "Monitor for CNS/respiratory depression (may be delayed 12-24h). Watch for anticholinergic signs. Keep Naloxone ready.",
   },
 
   // Metformin vs Metronidazole
@@ -138,6 +160,9 @@ export const drugs: Drug[] = [
     commonDosage: "500-1000mg twice daily",
     warnings: ["Lactic acidosis risk", "Hold before contrast", "GI side effects common"],
     lookAlikeIds: ["metronidazole", "methotrexate"],
+    isHighAlert: true,
+    antidote: "Sodium bicarbonate for lactic acidosis. Hemodialysis for severe toxicity. IV dextrose if hypoglycemia.",
+    wrongDrugAction: "Monitor blood glucose, lactate levels, and renal function. Ensure hydration. Dialysis for severe lactic acidosis.",
   },
   {
     id: "metronidazole",
@@ -150,6 +175,7 @@ export const drugs: Drug[] = [
     commonDosage: "500mg three times daily",
     warnings: ["Disulfiram reaction with alcohol", "Metallic taste", "Peripheral neuropathy"],
     lookAlikeIds: ["metformin", "methotrexate"],
+    wrongDrugAction: "Warn patient to avoid alcohol for 48h. Monitor for nausea, metallic taste. Generally well-tolerated single dose.",
   },
   {
     id: "methotrexate",
@@ -162,6 +188,9 @@ export const drugs: Drug[] = [
     commonDosage: "7.5-25mg weekly for RA",
     warnings: ["Weekly dosing only for RA", "Bone marrow suppression", "Hepatotoxicity"],
     lookAlikeIds: ["metformin", "metronidazole"],
+    isHighAlert: true,
+    antidote: "Leucovorin (folinic acid) 10-25mg IV/PO q6h until MTX level <0.05μM. Glucarpidase for severe toxicity.",
+    wrongDrugAction: "URGENT: Check CBC, renal/liver function. Start Leucovorin immediately. High-dose fluids + urine alkalinization. Monitor for mucositis.",
   },
 
   // Zyprexa vs Zyrtec
@@ -176,6 +205,9 @@ export const drugs: Drug[] = [
     commonDosage: "5-20mg once daily",
     warnings: ["Metabolic syndrome", "Weight gain", "Diabetes risk"],
     lookAlikeIds: ["zyrtec", "celexa"],
+    isHighAlert: true,
+    antidote: "No specific antidote. Activated charcoal if recent ingestion. Treat hypotension with fluids (avoid epinephrine).",
+    wrongDrugAction: "Monitor BP, HR, level of consciousness. Watch for QT prolongation. Supportive care. Avoid benzodiazepines if IM olanzapine given.",
   },
 
   // Zocor vs Zoloft
@@ -190,6 +222,7 @@ export const drugs: Drug[] = [
     commonDosage: "10-40mg once daily at night",
     warnings: ["Muscle pain/rhabdomyolysis", "Drug interactions", "Avoid grapefruit"],
     lookAlikeIds: ["zoloft", "zantac"],
+    wrongDrugAction: "Monitor for muscle pain/weakness. Check CK levels if symptomatic. Usually single dose is well-tolerated.",
   },
   {
     id: "zoloft",
@@ -202,6 +235,9 @@ export const drugs: Drug[] = [
     commonDosage: "50-200mg once daily",
     warnings: ["Serotonin syndrome risk", "Suicidal thoughts warning", "GI upset"],
     lookAlikeIds: ["zocor"],
+    isHighAlert: true,
+    antidote: "Cyproheptadine for serotonin syndrome (4-8mg initially, then 2mg q2h). Benzodiazepines for agitation.",
+    wrongDrugAction: "Monitor for serotonin syndrome (agitation, hyperthermia, tremor). Activated charcoal if within 1h. ECG monitoring.",
   },
 
   // Hydroxyzine vs Hydralazine
@@ -216,6 +252,7 @@ export const drugs: Drug[] = [
     commonDosage: "25-100mg up to four times daily",
     warnings: ["QT prolongation at high doses", "Sedation", "Anticholinergic effects"],
     lookAlikeIds: ["hydralazine"],
+    wrongDrugAction: "Monitor for excessive sedation, QT prolongation. ECG if high dose. Supportive care, airway protection if needed.",
   },
   {
     id: "hydralazine",
@@ -228,6 +265,9 @@ export const drugs: Drug[] = [
     commonDosage: "25-50mg three to four times daily",
     warnings: ["Lupus-like syndrome", "Reflex tachycardia", "Headache"],
     lookAlikeIds: ["hydroxyzine"],
+    isHighAlert: true,
+    antidote: "No specific antidote. IV fluids for hypotension. Vasopressors (norepinephrine) if refractory hypotension.",
+    wrongDrugAction: "Monitor BP closely, place patient supine. IV fluids for hypotension. Watch for reflex tachycardia, headache.",
   },
 
   // Clonidine vs Klonopin
@@ -242,6 +282,9 @@ export const drugs: Drug[] = [
     commonDosage: "0.1-0.3mg twice daily",
     warnings: ["Rebound hypertension if stopped suddenly", "Sedation", "Bradycardia"],
     lookAlikeIds: ["klonopin"],
+    isHighAlert: true,
+    antidote: "Tolazoline or phentolamine for severe hypotension. Atropine for symptomatic bradycardia. Naloxone may help.",
+    wrongDrugAction: "Monitor BP, HR continuously. IV fluids for hypotension. Atropine for bradycardia. Watch for CNS depression.",
   },
   {
     id: "klonopin",
@@ -254,6 +297,9 @@ export const drugs: Drug[] = [
     commonDosage: "0.5-2mg twice daily",
     warnings: ["High addiction potential", "CNS depression", "Withdrawal seizures"],
     lookAlikeIds: ["clonidine"],
+    isHighAlert: true,
+    antidote: "Flumazenil 0.2mg IV over 15 sec, repeat q60sec to max 1mg. CAUTION: Risk of seizures in chronic users or mixed ingestion.",
+    wrongDrugAction: "Monitor respiratory status, level of consciousness. Airway protection. Avoid Flumazenil in chronic benzo users.",
   },
 ];
 
