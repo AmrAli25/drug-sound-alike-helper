@@ -123,10 +123,28 @@ export function SearchBar({ onSelectDrug }: SearchBarProps) {
                 selectedIndex === index && "bg-secondary/50"
               )}
             >
+              {/* Drug Image in Search */}
+              {drug.imageUrl && (
+                <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 border border-border/50 bg-secondary">
+                  <img 
+                    src={drug.imageUrl} 
+                    alt={drug.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                </div>
+              )}
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <span className="font-semibold text-foreground">{drug.name}</span>
                   <span className="text-sm text-muted-foreground">({drug.genericName})</span>
+                  {drug.isHighAlert && (
+                    <span className="px-1.5 py-0.5 text-[10px] font-bold rounded bg-destructive text-destructive-foreground">
+                      HIGH ALERT
+                    </span>
+                  )}
                 </div>
                 <p className="text-sm text-muted-foreground mt-0.5">{drug.category}</p>
               </div>

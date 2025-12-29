@@ -1,9 +1,10 @@
 import { Search, AlertTriangle, Pill, ArrowRight } from "lucide-react";
 
 const exampleDrugs = [
-  { name: "Celebrex", lookAlike: "Celexa" },
-  { name: "Lamictal", lookAlike: "Lamisil" },
-  { name: "Metformin", lookAlike: "Metronidazole" },
+  { name: "Amaryl", lookAlike: "Reminyl" },
+  { name: "Lasix", lookAlike: "Losec" },
+  { name: "Glucophage", lookAlike: "Glucovance" },
+  { name: "Concor", lookAlike: "Coversyl" },
 ];
 
 interface EmptyStateProps {
