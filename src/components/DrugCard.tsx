@@ -40,38 +40,54 @@ export function DrugCard({ drug, isMain = false, showWarning = false }: DrugCard
         </div>
       )}
 
-      {/* Header */}
+      {/* Header with Image */}
       <div className={cn("px-6 pt-6 pb-4", isMain && "gradient-hero")}>
-        <div className="flex items-start justify-between">
-          <div>
-            <h3
+        <div className="flex items-start gap-4">
+          {/* Drug Image */}
+          {drug.imageUrl && (
+            <div className="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0 border border-border/50 bg-secondary">
+              <img 
+                src={drug.imageUrl} 
+                alt={drug.name}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+          )}
+          <div className="flex-1">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3
+                  className={cn(
+                    "text-2xl font-bold",
+                    isMain ? "text-primary-foreground" : "text-foreground"
+                  )}
+                >
+                  {drug.name}
+                </h3>
+                <p
+                  className={cn(
+                    "text-sm mt-1",
+                    isMain ? "text-primary-foreground/80" : "text-muted-foreground"
+                  )}
+                >
+                  {drug.genericName}
+                </p>
+              </div>
+            </div>
+            <span
               className={cn(
-                "text-2xl font-bold",
-                isMain ? "text-primary-foreground" : "text-foreground"
+                "inline-block mt-2 px-3 py-1.5 rounded-full text-sm font-medium",
+                isMain
+                  ? "bg-primary-foreground/20 text-primary-foreground"
+                  : "bg-primary/10 text-primary"
               )}
             >
-              {drug.name}
-            </h3>
-            <p
-              className={cn(
-                "text-sm mt-1",
-                isMain ? "text-primary-foreground/80" : "text-muted-foreground"
-              )}
-            >
-              {drug.genericName}
-            </p>
+              {drug.category}
+            </span>
           </div>
-          <span
-            className={cn(
-              "px-3 py-1.5 rounded-full text-sm font-medium",
-              isMain
-                ? "bg-primary-foreground/20 text-primary-foreground"
-                : "bg-primary/10 text-primary",
-              drug.isHighAlert && "mr-24"
-            )}
-          >
-            {drug.category}
-          </span>
         </div>
       </div>
 
